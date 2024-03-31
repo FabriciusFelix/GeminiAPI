@@ -6,6 +6,36 @@
     <title>Document</title>
 </head>
 <body>
-    <h1> Essa é minha home Page </h1>
+    <!-- <form action="/prompt" method="post"> -->
+    <!-- <form onsubmit="postPrompt()"> -->
+    <form action="/prompt" method="GET">
+        <h1> Consultor API </h1>
+        <label>Faça sua pergunta</label>
+        <input type ="text" name="prompt" id='prompt'>
+        <button type="submit">Executar</button>
+        <label id ="resPrompt"></label>
+    </form>
 </body>
+<script>
+    console.log('Welcome to de front')
+    fetch('/api/user')
+    .then(response => response.json()
+    .then(user => console.log(user)));
+
+    function EnviarPrompt(){
+        let prompt = document.getElementById('prompt').value;
+        console.log('EnviarPrompt: ' + prompt);
+        console.log(prompt);
+        fetch('/api/prompt1?'+prompt, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain'
+            },
+            body: prompt ,
+        })
+       .then(response => response.json())
+       .then(responseToFront => alert(responseToFront));
+    }
+    
+</script>
 </html>
