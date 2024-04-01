@@ -1,0 +1,62 @@
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    justify-content: center;
+    display: flex;
+    box-shadow: #999;
+  }
+  
+  h1 {
+    margin-bottom: 15px;
+  }
+  
+  .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%; /* Adjust width as needed */
+    background-color: #f6f6f6; /* Light gray background */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 3px; /* Rounded corners */
+  }
+  
+  .search-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #999; /* Lighter text color */
+    font-size: 14px; /* Slightly smaller font */
+    margin-top: 5px;  
+    border: 1px solid #ddd;
+  }
+  
+  #prompt {
+    width: 100%; /* Fill the container */
+    padding: 10px 15px; /* Inner padding */
+    border: none; /* Remove default border */
+    outline: none; /* Remove default outline */
+    font-size: 16px; /* Consistent font size */
+    border: 1px solid #998;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius:10px;
+  }
+  
+  #prompt:focus {
+    background-color: #fff; /* White background on focus */
+  }
+  
+  button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 3px;
+    background-color: #4285F4; /* Google blue */
+    color: #fff; /* White text */
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #337AB7; /* Darker blue on hover */
+  }
+  

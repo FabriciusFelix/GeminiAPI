@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./home.css">
 </head>
-<body>
-    <!-- <form action="/prompt" method="post"> -->
-    <!-- <form onsubmit="postPrompt()"> -->
-    <form action="/prompt" method="GET">
+<body> 
+    <form action="/prompt" method="GET" onload="EnviarPrompt()">
         <h1> Consultor API </h1>
         <label>Faça sua pergunta</label>
         <input type ="text" name="prompt" id='prompt'>
@@ -21,20 +20,20 @@
     fetch('/api/user')
     .then(response => response.json()
     .then(user => console.log(user)));
+    EnviarPrompt()
 
     function EnviarPrompt(){
         let prompt = document.getElementById('prompt').value;
         console.log('EnviarPrompt: ' + prompt);
         console.log(prompt);
-        fetch('/api/prompt1?'+prompt, {
-            method: 'POST',
+        fetch('/prompt?'+prompt, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'text/plain'
             },
             body: prompt ,
         })
-       .then(response => response.json())
-       .then(responseToFront => alert(responseToFront));
+       .then(response => response.json() );
     }
     
 </script>

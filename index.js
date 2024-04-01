@@ -19,8 +19,12 @@ router.get('/',(cors(corsOptions)), (req, res)=>{
     res.json({success: true})
 })
 router.get('/home',(cors(corsOptions)), (req, res)=>{
-    res.sendFile(path.join(__dirname + '/pages/home.html'));
+    res.sendFile(path.join(__dirname + '/pages/home.html'))
     
+    
+})
+router.get('/home.css',(cors(corsOptions)), (req, res)=>{
+    res.sendFile(path.join(__dirname + '/pages/home.css'))
 })
 router.get('/contato', (req, res)=>{
     
@@ -42,9 +46,14 @@ router.get('/prompt',(cors(corsOptions)), (req, res)=>{
        const text = response.text();
        responseToFront = text;
        console.log( 'Response dentro da api: '+ responseToFront) 
-       res.json(text);
+    //    res.json(text);
+    return res.json({
+        success: true,
+        message: responseToFront
+    }) 
     }
-    run();
+    run(); 
+    
 })
 
 app.get('/api/user',(req,res) => {
@@ -87,7 +96,7 @@ app.post('/api/prompt', (req, res)=>{
     console.log('dentro do Post')
     const genAI = new GoogleGenerativeAI(process.env.API_KEY)   
     let data = '';
-    console.log(req.body)
+    console.log(req.text)
     console.log('Carregando genAI')
     async function run() {
        const model = genAI.getGenerativeModel({ model: "gemini-pro"});
