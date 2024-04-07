@@ -8,8 +8,12 @@
   "name": "geminiapi",
   "version": "1.0.0",
   "main": "index.js",
+
+  "engines":{
+    "node": "14.x"
+  },
   "scripts": {
-    "start": "npx nodemon index.js --ignore client",
+    "start": "node index.js --ignore client",
     "test":  "node index.js"
   },
   "repository": {
