@@ -4,18 +4,21 @@ var cors = require("cors");
 dotenv.config()
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 var app = express();
-app.use(cors(corsOptions));
 
+app.use(express.json())
+app.use(cors());
+app.use(bodyParser.json())
 var corsOptions = {
-    origin: '[*]',
+    origin: 'http://localhost:3000' || 'https://localhost:3000',
     optionsSuccessStatus: 200 // For legacy browser support
 }
 
 const router = express.Router();    
 router.get('/',(cors(corsOptions)), (req, res)=>{
-    res.sendFile(path.join(__dirname + '/pages/home.html'));
+    res.sendFile(path.join(__dirname + '/client/src/App.js'));
     res.json({success: true})
 })
 router.get('/home',(cors(corsOptions)), (req, res)=>{
@@ -68,29 +71,24 @@ app.get('/api/user',(req,res) => {
     }];
     res.json(user);
 });
-app.post('/prompt',function (req, res){
-    console.log('dentro do Post')
+router.post('/prompt',function (request, res){
+    const message = request.body.message;
     const genAI = new GoogleGenerativeAI(process.env.API_KEY)
-    var responseToFront = '';    
-    let data = req.body;
-    console.log('Valor data: ',req.body)
-    if (tipeof(data) == undefined) {
-        data = 'Quantos anos Micheal Jackson tinha?'
-    }
-    console.log(req.body)
-    console.log('Carregando genAI')
+    var responseToFront = '';            
+    console.log('message post: '+ message);
+    console.log('Carregando genAI') 
     async function run() {
        const model = genAI.getGenerativeModel({ model: "gemini-pro"});
-       const prompt = data;
-       const result = await model.generateContent(prompt);
+       const result = await model.generateContent(message);
        const response = await result.response;
-       const text = response.text;
+       const text = response.text();
        responseToFront = text;
        console.log( 'Response dentro da api: '+ responseToFront) 
-       res.json(responseToFront);
+    //    res.json(text);
+    return res.json(response);
     }
-    run();
-})
+    run(); 
+}) 
 app.post('/api/prompt', (req, res)=>{
     console.log('dentro do Post')
     const genAI = new GoogleGenerativeAI(process.env.API_KEY)   

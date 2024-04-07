@@ -6,6 +6,7 @@ Comandos para Instalar:
 ```
 npm install express
 npm i dotenv @google/generative-ai
+npm install axios
 npm install --save-dev nodemon 
     ToExecute: npx nodemon index.js
 ```

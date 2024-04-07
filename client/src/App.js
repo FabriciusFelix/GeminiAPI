@@ -11,17 +11,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        
-        <form action="/prompt" method="GET">
-          <h1> Consultor API </h1>
-          <label>Faça sua pergunta</label>
-          <button type="submit">Executar</button>
-        </form>
+        <h1> Consultor API </h1>
         <p>
-           <p>{!valor ? "Loading..." : valor}</p>
+           <p>{!valor ? "Faça Sua Pergunta" : valor}</p>
         </p>
         <div className="py-6">
-          <Form />
+          <Form />  
         </div>
       </header>
     </div>

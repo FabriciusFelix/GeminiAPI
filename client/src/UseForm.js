@@ -8,7 +8,11 @@ function useForm({ additionalData }) {
     e.preventDefault();
     setStatus('loading');
     setMessage('');
-
+    console.log(e.target.elements);
+    console.log(e.target.action);
+    console.log(e.target.method);
+    console.log(e.target.action);
+    
     const finalFormEndpoint = e.target.action;
     const data = Array.from(e.target.elements)
       .filter((input) => input.prompt)
@@ -45,5 +49,5 @@ function useForm({ additionalData }) {
 
   return { handleSubmit,status, message };
 }
-
-export default useForm;
+ 
+export default useForm;  
