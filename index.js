@@ -9,7 +9,7 @@ var app = express();
 app.use(cors(corsOptions));
 
 var corsOptions = {
-    origin: 'http://localhost:5500',
+    origin: '[*]',
     optionsSuccessStatus: 200 // For legacy browser support
 }
 
@@ -48,7 +48,6 @@ router.get('/prompt',(cors(corsOptions)), (req, res)=>{
        console.log( 'Response dentro da api: '+ responseToFront) 
     //    res.json(text);
     return res.json({
-        success: true,
         message: responseToFront
     }) 
     }
