@@ -16,10 +16,14 @@ var corsOptions = {
     optionsSuccessStatus: 200 // For legacy browser support
 }
 
+
+const baseDir = `${__dirname}/client/build/`
+app.use(express.static(`${baseDir}`))
+app.get('*', (req,res) => res.sendFile('index.html' , { root : baseDir }))
+
 const router = express.Router();    
 router.get('/',(cors(corsOptions)), (req, res)=>{
-    res.sendFile(path.join(__dirname + '/client/src/App.js'));
-    res.json({success: true})
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
 })
 router.get('/home',(cors(corsOptions)), (req, res)=>{
     res.sendFile(path.join(__dirname + '/pages/home.html'))
